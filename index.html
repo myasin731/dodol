@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk — ClassRoom Lite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { primary: '#1a73e8' } } } };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+  <main class="w-full max-w-md">
+    <div class="text-center mb-6">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#1a73e8] text-white mb-3">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></svg>
+      </div>
+      <h1 class="text-2xl font-medium">ClassRoom Lite</h1>
+      <p class="text-sm text-gray-500">Ruang belajar sederhana untuk guru dan siswa</p>
+    </div>
+
+    <div class="card overflow-hidden">
+      <div class="tabbar">
+        <button type="button" id="tab-login" class="tab active flex-1 justify-center">Masuk</button>
+        <button type="button" id="tab-register" class="tab flex-1 justify-center">Daftar Siswa</button>
+      </div>
+
+      <div class="p-5">
+        <div id="config-warning" class="hidden text-sm rounded-lg px-3 py-2 mb-4 bg-yellow-50 text-yellow-800">
+          ⚠️ URL API belum diatur. Buka <code>js/api.js</code> dan isi <code>CONFIG.API_URL</code> dengan URL Web App Apps Script.
+        </div>
+        <div id="alert-box" class="hidden" role="alert"></div>
+
+        <!-- LOGIN -->
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label class="label" for="login-email">Email</label>
+            <input class="input" id="login-email" name="email" type="email" required autocomplete="username" placeholder="nama@email.com">
+          </div>
+          <div>
+            <label class="label" for="login-password">Password</label>
+            <input class="input" id="login-password" name="password" type="password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary w-full py-2.5">Masuk</button>
+          <p class="text-xs text-gray-500 text-center">Peran (guru / siswa) dikenali otomatis dari akun Anda.</p>
+        </form>
+
+        <!-- REGISTER SISWA -->
+        <form id="register-form" class="space-y-4 hidden">
+          <div>
+            <label class="label" for="reg-nama">Nama lengkap</label>
+            <input class="input" id="reg-nama" name="nama" required maxlength="80" autocomplete="name">
+          </div>
+          <div>
+            <label class="label" for="reg-email">Email</label>
+            <input class="input" id="reg-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="label" for="reg-pass">Password</label>
+              <input class="input" id="reg-pass" name="password" type="password" required minlength="6" autocomplete="new-password">
+            </div>
+            <div>
+              <label class="label" for="reg-pass2">Ulangi password</label>
+              <input class="input" id="reg-pass2" name="password2" type="password" required minlength="6" autocomplete="new-password">
+            </div>
+          </div>
+          <div>
+            <label class="label" for="reg-kode">Kode kelas</label>
+            <input class="input uppercase tracking-widest" id="reg-kode" name="kode_kelas" required maxlength="6" minlength="6" placeholder="mis. MTK7A1">
+            <p class="hint">Minta kode 6 karakter ini dari gurumu.</p>
+          </div>
+          <button type="submit" class="btn btn-primary w-full py-2.5">Daftar &amp; Masuk</button>
+        </form>
+      </div>
+    </div>
+    <p class="text-center text-xs text-gray-400 mt-4">Akun guru dibuat oleh admin di Spreadsheet.</p>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* ============================================================
+   ClassRoom Lite — style.css
+   Warna primer #1a73e8, gaya bersih ala Google Classroom
+   ============================================================ */
+:root {
+  --primary: #1a73e8;
+  --primary-dark: #1557b0;
+  --primary-soft: #e8f0fe;
+  --text: #202124;
+  --muted: #5f6368;
+  --line: #dadce0;
+  --bg: #f8f9fa;
+  --danger: #d93025;
+  --success: #188038;
+  --warn: #e37400;
+}
+
+html, body {
+  font-family: 'Google Sans', 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+body.no-scroll { overflow: hidden; }
+a { color: var(--primary); }
+.pre-wrap { white-space: pre-wrap; word-break: break-word; }
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  padding: .5rem 1rem; border-radius: .5rem; font-weight: 500; font-size: .875rem;
+  border: 1px solid transparent; cursor: pointer; transition: background .15s, box-shadow .15s;
+  white-space: nowrap; line-height: 1.25rem;
+}
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-dark); box-shadow: 0 1px 3px rgba(60,64,67,.3); }
+.btn-outline { background: #fff; color: var(--primary); border-color: var(--line); }
+.btn-outline:hover:not(:disabled) { background: var(--primary-soft); }
+.btn-ghost { background: transparent; color: var(--muted); }
+.btn-ghost:hover:not(:disabled) { background: #f1f3f4; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: #b3261e; }
+.btn-sm { padding: .3rem .65rem; font-size: .8rem; }
+.btn-icon { padding: .4rem; border-radius: 9999px; color: var(--muted); background: transparent; border: 0; cursor: pointer; display: inline-flex; }
+.btn-icon:hover { background: #f1f3f4; }
+.btn-icon.danger:hover { background: #fce8e6; color: var(--danger); }
+.btn.is-busy { position: relative; color: transparent !important; pointer-events: none; }
+.btn.is-busy::after {
+  content: ''; position: absolute; width: 1rem; height: 1rem; border-radius: 9999px;
+  border: 2px solid rgba(255,255,255,.5); border-top-color: #fff; animation: spin .7s linear infinite;
+}
+.btn-outline.is-busy::after, .btn-ghost.is-busy::after { border-color: rgba(26,115,232,.3); border-top-color: var(--primary); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Form ---------- */
+.label { display: block; font-size: .8rem; font-weight: 500; color: var(--muted); margin-bottom: .25rem; }
+.input {
+  width: 100%; padding: .55rem .75rem; border: 1px solid var(--line); border-radius: .5rem;
+  background: #fff; font-size: .9rem; color: var(--text); outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,115,232,.15); }
+textarea.input { resize: vertical; min-height: 5rem; }
+.hint { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
+
+/* ---------- Card ---------- */
+.card { background: #fff; border: 1px solid var(--line); border-radius: .5rem; box-shadow: 0 1px 2px rgba(60,64,67,.1); }
+.card-hover { transition: box-shadow .15s, transform .15s; cursor: pointer; }
+.card-hover:hover { box-shadow: 0 2px 8px rgba(60,64,67,.2); }
+
+/* Kartu kelas ala Google Classroom */
+.class-card { overflow: hidden; display: flex; flex-direction: column; min-height: 11rem; }
+.class-card .banner { padding: 1rem 1.1rem; color: #fff; min-height: 6.2rem; position: relative; }
+.class-card .banner h3 { font-size: 1.15rem; font-weight: 500; line-height: 1.3; }
+.class-card .banner p { font-size: .8rem; opacity: .9; }
+.class-card .banner .avatar-lg { position: absolute; right: 1rem; bottom: -1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+
+.avatar {
+  display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px;
+  background: var(--primary); color: #fff; font-weight: 500; flex: none; width: 2rem; height: 2rem; font-size: .8rem;
+}
+.avatar-lg { width: 3.2rem; height: 3.2rem; font-size: 1.1rem; }
+
+/* ---------- Badge ---------- */
+.badge { display: inline-flex; align-items: center; padding: .1rem .55rem; border-radius: 9999px; font-size: .72rem; font-weight: 500; white-space: nowrap; }
+.badge-gray { background: #f1f3f4; color: var(--muted); }
+.badge-blue { background: var(--primary-soft); color: var(--primary-dark); }
+.badge-green { background: #e6f4ea; color: var(--success); }
+.badge-red { background: #fce8e6; color: var(--danger); }
+.badge-yellow { background: #fef7e0; color: var(--warn); }
+
+/* ---------- Sidebar (guru) ---------- */
+.sidebar {
+  position: fixed; top: 0; bottom: 0; left: 0; width: 16rem; background: #fff; border-right: 1px solid var(--line);
+  z-index: 40; display: flex; flex-direction: column; transition: transform .2s ease;
+}
+.nav-item {
+  display: flex; align-items: center; gap: .85rem; padding: .65rem 1.25rem; margin-right: .75rem; color: var(--text);
+  font-size: .9rem; font-weight: 500; border-radius: 0 9999px 9999px 0; text-decoration: none; cursor: pointer;
+}
+.nav-item:hover { background: #f1f3f4; }
+.nav-item.active { background: var(--primary-soft); color: var(--primary-dark); }
+.nav-item svg { color: var(--muted); }
+.nav-item.active svg { color: var(--primary); }
+.main-area { margin-left: 16rem; min-height: 100vh; }
+.sticky-header {
+  position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.96); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line); height: 3.75rem; display: flex; align-items: center; padding: 0 1.25rem; gap: .75rem;
+}
+.drawer-overlay { position: fixed; inset: 0; background: rgba(32,33,36,.5); z-index: 35; display: none; }
+
+/* ---------- Tab ---------- */
+.tabbar { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); background: #fff; overflow-x: auto; }
+.tab {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .85rem 1.1rem; font-size: .9rem; font-weight: 500;
+  color: var(--muted); border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; text-decoration: none;
+}
+.tab:hover { color: var(--primary); background: #f8f9fa; }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* ---------- Tabel / baris ---------- */
+.table-wrap { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: .875rem; }
+.tbl th { text-align: left; font-weight: 500; color: var(--muted); padding: .65rem .9rem; border-bottom: 1px solid var(--line); background: #fafafa; white-space: nowrap; }
+.tbl td { padding: .7rem .9rem; border-bottom: 1px solid #f1f3f4; vertical-align: middle; }
+.tbl tr:last-child td { border-bottom: 0; }
+.row-item { display: flex; align-items: center; gap: .85rem; padding: .85rem 1rem; border-bottom: 1px solid #f1f3f4; }
+.row-item:last-child { border-bottom: 0; }
+
+/* ---------- Skeleton ---------- */
+.skeleton {
+  background: linear-gradient(90deg, #eceff1 25%, #f6f8f9 37%, #eceff1 63%);
+  background-size: 400% 100%; animation: shimmer 1.3s ease infinite; border-radius: .4rem;
+}
+@keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(32,33,36,.55); z-index: 60; display: flex; align-items: flex-start;
+  justify-content: center; padding: 3vh 1rem; overflow-y: auto; animation: fade .15s ease;
+}
+.modal { background: #fff; border-radius: .75rem; width: 100%; max-width: 32rem; box-shadow: 0 8px 28px rgba(0,0,0,.28); animation: pop .18s ease; }
+.modal.lg { max-width: 46rem; }
+.modal.sm { max-width: 26rem; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+.modal-head h2 { font-size: 1.1rem; font-weight: 500; }
+.modal-body { padding: 1.25rem; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* ---------- Toast ---------- */
+#toast-root { position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; gap: .5rem; align-items: center; width: calc(100% - 2rem); max-width: 26rem; pointer-events: none; }
+.toast {
+  display: flex; align-items: center; gap: .6rem; padding: .7rem 1rem; border-radius: .5rem; color: #fff; font-size: .875rem;
+  background: #323232; box-shadow: 0 4px 14px rgba(0,0,0,.3); animation: pop .2s ease; pointer-events: auto; width: 100%;
+}
+.toast.success { background: #188038; }
+.toast.error { background: #d93025; }
+.toast.info { background: #323232; }
+.toast.out { opacity: 0; transition: opacity .25s; }
+
+/* ---------- Empty state ---------- */
+.empty { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+.empty svg.illus { width: 9rem; height: auto; margin: 0 auto 1rem; }
+.empty h3 { color: var(--text); font-weight: 500; font-size: 1.05rem; margin-bottom: .25rem; }
+
+/* ---------- Penilaian ---------- */
+.grade-row { display: grid; gap: 1rem; padding: 1rem; border-bottom: 1px solid #f1f3f4; grid-template-columns: 1fr; }
+.grade-row:last-child { border-bottom: 0; }
+@media (min-width: 900px) { .grade-row { grid-template-columns: 1.1fr 1.3fr 16rem; align-items: start; } }
+
+/* ---------- Responsif (mobile) ---------- */
+@media (max-width: 767px) {
+  .sidebar { transform: translateX(-100%); box-shadow: 0 0 20px rgba(0,0,0,.25); }
+  .sidebar.open { transform: none; }
+  .drawer-overlay.show { display: block; }
+  .main-area { margin-left: 0; }
+  /* Tab di detail kelas berubah jadi bottom nav */
+  .tabbar.bottom-nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; border-top: 1px solid var(--line); border-bottom: 0;
+    justify-content: space-around; gap: 0; box-shadow: 0 -2px 8px rgba(0,0,0,.08); padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tabbar.bottom-nav .tab { flex: 1; flex-direction: column; gap: .15rem; padding: .5rem .25rem; font-size: .7rem; border-bottom: 0; border-top: 3px solid transparent; }
+  .tabbar.bottom-nav .tab.active { border-top-color: var(--primary); }
+  body.has-bottom-nav { padding-bottom: 4.5rem; }
+  #toast-root { bottom: 5rem; }
+  .modal-backdrop { padding: 0; align-items: flex-end; }
+  .modal { border-radius: 1rem 1rem 0 0; max-width: 100% !important; }
+}
+@media (min-width: 768px) {
+  .tabbar.bottom-nav .tab svg { display: none; }
+}
+
+/* Tombol hamburger hanya tampil di mobile */
+@media (min-width: 768px) { #btn-menu { display: none; } }
